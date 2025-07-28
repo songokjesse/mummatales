@@ -1,13 +1,11 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db/client';
 import { stories } from '@/lib/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 
 export async function GET() {
   try {
-    const storiesList = await db.select().from(stories).orderBy(stories.createdAt, {
-      desc: true,
-    });
+    const storiesList = await db.select().from(stories).orderBy(desc(stories.createdAt));
     return NextResponse.json(storiesList);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch stories' }, { status: 500 });
