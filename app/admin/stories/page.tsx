@@ -1,16 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, Trash2, Edit2 } from "lucide-react";
 import { db } from "@/lib/db/client";
 import { stories } from "@/lib/db/schema";
+import { desc } from 'drizzle-orm';
 import Link from "next/link";
 
 export default async function StoriesPage() {
-  const storiesList = await db.select().from(stories).orderBy(stories.createdAt, {
-    desc: true,
-  });
+  const storiesList = await db.select().from(stories).orderBy(desc(stories.createdAt));
 
   return (
     <div className="space-y-6">
