@@ -53,7 +53,7 @@ export default function SignUpPage() {
           </div>
           <div className="space-y-2">
             <label htmlFor="child-name" className="text-sm font-medium text-gray-700">
-              Child's Name
+              Child&apos;s Name
             </label>
             <input
               id="child-name"
